@@ -37,3 +37,10 @@ to take a long time for the FPAT thing to come to fruition. But it's
 finally here and now this problem is solved.
 
 Proof that if you wait long enough your patches become irrelevant.
+
+
+=== stack overflow ===
+
+stack overflow kinda made me make this a repo.
+
+[[http://serverfault.com/a/623891/109647|Here's the link to my answer]].
