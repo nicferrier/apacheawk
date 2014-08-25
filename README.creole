@@ -1,0 +1,39 @@
+= awk hack to aid hacking access logs =
+
+Isn't access-log parsing frustrating?
+
+This repo vc's a nice little GAWK hack that let's you parse files with
+complex fields, such as access logs.
+
+The hack is in a GAWK script as well as a shell script where it
+defines an alias that you can use like this:
+
+{{{
+$ . apacheawk-sh
+$ apacheawk '$6 ~ /200/ {print $5}' /var/log/nginx/access.log.1 | sort | uniq
+"GET / HTTP/1.1"
+"GET /manual/elisp/index.html HTTP/1.1"
+"GET /manual/elisp/Index.html HTTP/1.1"
+"GET /scripts/app.js HTTP/1.1"
+"GET /style.css HTTP/1.1"
+}}}
+
+
+This is all thanks to the
+very
+[[http://www.gnu.org/software/gawk/manual/html_node/Splitting-By-Content.html|clever AWK extension]]
+which allows the FPAT variable to be defined:
+
+
+=== some history ===
+
+When I first got totally hacked off by this problem, sometime in the
+1990s, I wrote a patch to gawk so that it would consume whole strings
+if you told it too. And it could also be told what the string
+delimmeter was.
+
+Arnold Robbins rejected it in favour of this FPAT thing. It has seemed
+to take a long time for the FPAT thing to come to fruition. But it's
+finally here and now this problem is solved.
+
+Proof that if you wait long enough your patches become irrelevant.
